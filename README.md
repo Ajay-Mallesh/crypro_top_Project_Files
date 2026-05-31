@@ -3,8 +3,8 @@ The crypto_top project is a high-performance ASIC cryptographic accelerator desi
 
 
 -> Use cryto_manual to create the project in the project folder (or)
--> Website (Initial version): 
-https://ajay-mallesh.github.io/crypro_top_manual_website/
+
+-> Website (Initial version): https://ajay-mallesh.github.io/crypro_top_manual_website/
 
 ############### All Normal Text / text document are created in "Notepad++". Please use that if any changes in text structures ################################
 
