@@ -1,0 +1,50 @@
+1. Worst-Case Input-to-Register (in2reg) Report
+
+****************************************
+Report : timing
+        -path_type full_clock_expanded
+        -delay_type max
+        -nworst 1
+        -max_paths 1
+        -report_by design
+        -nets
+        -transition_time
+        -capacitance
+        -physical
+Design : crypto_top
+Version: V-2023.12-SP5-6
+****************************************
+
+Startpoint: valid_in (input port clocked by main_clk)
+Endpoint: u_key_gen_lp/clk_gate_lfsr_reg_reg/latch (rising clock gating-check end-point clocked by main_clk)
+Mode: func
+Corner: ss_125c
+Scenario: func_ss
+Path Group: **in2reg_default**
+Path Type: max
+
+Point                                          Fanout  Cap    Trans    Incr      Path      Location
+------------------------------------------------------------------------------------------------------
+clock main_clk (rise edge)                                             0.00      0.00
+clock network delay (ideal)                                            0.00      0.00
+input external delay                                                   0.80      0.80 f
+valid_in (in)                                                  0.00    0.00      0.80 f    (0.14, 203.82)
+valid_in (net)                                   2    19.55
+u_key_gen_lp/valid_in_UPF_LS/Y (LSDNSSX1_HVT)                  0.03    0.04      0.84 f ~  (12.16, 35.83)
+u_key_gen_lp/n24 (net)                           2     1.83
+u_key_gen_lp/clk_gate_lfsr_reg_reg/latch/EN (CGLPPRX2_RVT)     0.03    0.00      0.84 f    (14.30, 35.40)
+data arrival time                                                                0.84
+
+clock main_clk (rise edge)                                             2.00      2.00
+source latency                                                         0.00      2.00
+clk (in)                                                       0.00    0.00      2.00 r    (0.14, 198.95)
+clk (net)                                      388     0.00
+u_key_gen_lp/clk_gate_lfsr_reg_reg/latch/CLK (CGLPPRX2_RVT)    0.00   -0.11      1.89 r    (14.76, 36.62)
+clock uncertainty                                                     -0.15      1.74
+library setup time                                                    -0.04      1.70
+data required time                                                               1.70
+------------------------------------------------------------------------------------------------------
+data required time                                                               1.70
+data arrival time                                                               -0.84
+------------------------------------------------------------------------------------------------------
+slack (MET)                                                                      0.86

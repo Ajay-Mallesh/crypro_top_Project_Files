@@ -1,0 +1,24 @@
+Floorplan : 
+
+initialize_floorplan -shape U -side_ratio {1 1 0.7 1 0.7 1} -site_def unit -use_site row -core utilization 0.8 -core offset 3 -orientation S
+
+updated : v1.2 -> 13/05/2026
+
+initialize_floorplan -shape U -side_ratio {1.3 1.3 0.3 1.3 0.3 1.3} -site_def unit -use_site row -core utilization 0.7 -core offset 3 -orientation S
+
+sides : total width -> 945.8160 | total height -> 318.6640
+		
+	Distance : 
+		a -> 318.6640
+		b -> 319.2720
+		c -> 219.0320
+		d -> 307.2720
+		e -> 219.0320
+		f -> 319.2720
+		
+
+															T shape 
+
+initialize_floorplan -shape T -side_ratio {1 1 1 1 1 1} -site_def unit -use_site row -core utilization 0.6 -core offset 3
+
+

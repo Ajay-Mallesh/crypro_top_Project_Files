@@ -1,0 +1,45 @@
+3. Worst-Case Register-to-Output (reg2out) Report
+
+****************************************
+Report : timing
+        -path_type full_clock_expanded
+        -delay_type max
+        -nworst 1
+        -max_paths 1
+        -report_by design
+        -nets
+        -transition_time
+        -capacitance
+        -physical
+Design : crypto_top
+Version: V-2023.12-SP5-6
+****************************************
+
+Startpoint: u_cipher_hp/ciphertext_out_reg_127/Q (rising edge-triggered flip-flop clocked by main_clk)
+Endpoint: ciphertext_out[127] (output port clocked by main_clk)
+Mode: func
+Corner: ss_125c
+Scenario: func_ss
+Path Group: **reg2out_default**
+Path Type: max
+
+Point                                          Fanout  Cap    Trans    Incr      Path      Location
+------------------------------------------------------------------------------------------------------
+clock main_clk (rise edge)                                             0.00      0.00
+clock network delay (ideal)                                            0.00      0.00
+u_cipher_hp/ciphertext_out_reg_127/CLK (DFFARX1_RVT)           0.00    0.00      0.00 r    (38.50, 42.15)
+u_cipher_hp/ciphertext_out_reg_127/Q (DFFARX1_RVT)             0.05    0.14      0.14 f    (38.50, 42.15)
+u_cipher_hp/n5022 (net)                          1    12.40
+ciphertext_out[127] (out)                                      0.05    0.28      0.42 f    (0.14, 150.20)
+data arrival time                                                                0.42
+
+clock main_clk (rise edge)                                             2.00      2.00
+clock network delay (ideal)                                            0.00      2.00
+clock uncertainty                                                     -0.15      1.85
+output external delay                                                 -0.50      1.35
+data required time                                                               1.35
+------------------------------------------------------------------------------------------------------
+data required time                                                               1.35
+data arrival time                                                               -0.42
+------------------------------------------------------------------------------------------------------
+slack (MET)                                                                      0.93

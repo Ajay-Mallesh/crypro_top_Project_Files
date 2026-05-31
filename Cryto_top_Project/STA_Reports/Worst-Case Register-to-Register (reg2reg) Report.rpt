@@ -1,0 +1,54 @@
+2. Worst-Case Register-to-Register (reg2reg) Report
+
+****************************************
+Report : timing
+        -path_type full_clock_expanded
+        -delay_type max
+        -nworst 1
+        -max_paths 1
+        -report_by design
+        -nets
+        -transition_time
+        -capacitance
+        -physical
+Design : crypto_top
+Version: V-2023.12-SP5-6
+****************************************
+
+Startpoint: u_cipher_hp/round_state_reg_45_12/Q (rising edge-triggered flip-flop clocked by main_clk)
+Endpoint: u_cipher_hp/round_state_reg_46_12/D (rising edge-triggered flip-flop clocked by main_clk)
+Mode: func
+Corner: ss_125c
+Scenario: func_ss
+Path Group: main_clk
+Path Type: max
+
+Point                                          Fanout  Cap    Trans    Incr      Path      Location
+------------------------------------------------------------------------------------------------------
+clock main_clk (rise edge)                                             0.00      0.00
+clock network delay (ideal)                                            0.00      0.00
+u_cipher_hp/round_state_reg_45_12/CLK (DFFARX1_RVT)            0.00    0.00      0.00 r    (45.20, 60.10)
+u_cipher_hp/round_state_reg_45_12/Q (DFFARX1_RVT)              0.08    0.12      0.12 f    (45.20, 60.10)
+u_cipher_hp/n1452 (net)                          3     4.20    
+u_cipher_hp/U892/A (XOR2X1_RVT)                                0.08    0.01      0.13 f    (47.55, 62.30)
+u_cipher_hp/U892/Y (XOR2X1_RVT)                                0.05    0.09      0.22 r    (47.55, 62.30)
+u_cipher_hp/n2011 (net)                          1     1.85    
+u_cipher_hp/U905/B (NAND2X1_RVT)                               0.05    0.00      0.22 r    (48.10, 62.85)
+u_cipher_hp/U905/Y (NAND2X1_RVT)                               0.04    0.06      0.28 f    (48.10, 62.85)
+[... intermediate S-Box / P-Box logic omitted ...]
+u_cipher_hp/U1042/Y (MUX21X1_RVT)                              0.03    0.07      0.79 r    (51.20, 65.40)
+u_cipher_hp/n3055 (net)                          1     1.10
+u_cipher_hp/round_state_reg_46_12/D (DFFARX1_RVT)              0.03    0.01      0.80 r    (52.00, 66.15)
+data arrival time                                                                0.80
+
+clock main_clk (rise edge)                                             2.00      2.00
+clock network delay (ideal)                                            0.00      2.00
+u_cipher_hp/round_state_reg_46_12/CLK (DFFARX1_RVT)            0.00    0.00      2.00 r    (52.00, 66.15)
+clock uncertainty                                                     -0.15      1.85
+library setup time                                                    -0.03      1.82
+data required time                                                               1.82
+------------------------------------------------------------------------------------------------------
+data required time                                                               1.82
+data arrival time                                                               -0.80
+------------------------------------------------------------------------------------------------------
+slack (MET)                                                                      1.02

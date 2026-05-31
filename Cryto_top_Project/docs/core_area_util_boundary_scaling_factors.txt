@@ -1,0 +1,104 @@
+ICC2 FLOORPLAN UTILIZATION SCALING
+
+Current Utilization:
+106.3%
+
+Target Utilization:
+85%
+
+--------------------------------------------------
+
+Concept:
+
+Utilization = Cell Area / Core Area
+
+Cell area is fixed.
+
+To reduce utilization:
+Increase floorplan area.
+
+--------------------------------------------------
+
+Step 1: Compute Area Scaling
+
+Area_new / Area_old = Current_Util / Target_Util
+
+= 106.3 / 85
+= 1.25
+
+So floorplan area must increase by 1.25x
+
+--------------------------------------------------
+
+Step 2: Compute Coordinate Scaling
+
+Scale Factor = sqrt(1.25)
+
+s = 1.118
+
+--------------------------------------------------
+
+Step 3: Scale All Coordinates
+
+Multiply every X and Y coordinate by 1.118
+
+Examples:
+
+200 -> 224
+300 -> 336
+150 -> 168
+500 -> 560
+
+--------------------------------------------------
+
+Original Boundary:
+
+{{0 500}
+ {200 500}
+ {200 300}
+ {300 300}
+ {300 500}
+ {500 500}
+ {500 150}
+ {300 150}
+ {300 0}
+ {200 0}
+ {200 150}
+ {0 150}}
+
+--------------------------------------------------
+
+Scaled Boundary (~85% Utilization):
+
+{{0 560}
+ {224 560}
+ {224 336}
+ {336 336}
+ {336 560}
+ {560 560}
+ {560 168}
+ {336 168}
+ {336 0}
+ {224 0}
+ {224 168}
+ {0 168}}
+
+--------------------------------------------------
+
+Single-Line ICC2 Command:
+
+initialize_floorplan -site_def unit -boundary {{0 560} {224 560} {224 336} {336 336} {336 560} {560 560} {560 168} {336 168} {336 0} {224 0} {224 168} {0 168}} -core_offset 3
+
+--------------------------------------------------
+
+General Formula:
+
+s = sqrt(Current_Util / Target_Util)
+
+Multiply all coordinates by s
+
+This preserves:
+- symmetry
+- shape
+- proportions
+- orientation

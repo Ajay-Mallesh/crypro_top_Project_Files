@@ -1,0 +1,42 @@
+																'Y' Shape
+
+initialize_floorplan -site_def unit -boundary {{0 560} {224 560} {224 336} {336 336} {336 560} {560 560} {560 168} {336 168} {336 0} {224 0} {224 168} {0 168}} -core_offset 3 -use_site_row
+	
+	Removing existing floorplan objects
+	Creating core.
+	Core utilization ratio = 84.75%
+	Unplacing all cells ...
+	Creating site rows ...
+	Creating routing tracks ...
+	Initializing floorplan completed.
+	
+-> create_placement -floorplan 
+
+****************************************
+Report : congestion
+Design : crypto_top
+Version: V-2023.12-SP5-6
+Date   : Sat May 16 02:06:42 2026
+****************************************
+
+Layer     |    overflow     |              # GRCs has
+Name      | total  |  max   | overflow (%)    | max overflow
+----------------------------------------------------------------
+Both Dirs | 377057 |   40   | 159831 (69.13%) |      1
+H routing | 241839 |   27   |  94685 (81.91%) |      2
+V routing | 135218 |   40   |  65146 (56.36%) |      1
+
+
+-> No space for routing :- ~70 % congestion in this floorplan
+
+																updated 'Y' Shape
+
+initialize_floorplan -site_def unit -boundary {{0 570} {200 570} {200 380} {390 380} {390 570} {570 570} {570 140} {390 140} {390 0} {200 0} {200 140} {0 140}} -core_offset 3 -use_site_rows
+
+	Removing existing floorplan objects
+	Creating core.
+	Core utilization ratio = 76.71%
+	Unplacing all cells ...
+	Creating site rows ...
+	Creating routing tracks ...
+	Initializing floorplan completed.

@@ -1,0 +1,194 @@
+HOW TO DECIDE ICC2 FLOORPLAN BOUNDARIES FROM NETLIST
+
+--------------------------------------------------
+
+1. Get Netlist Area
+
+Commands:
+
+report_area
+report_qor
+
+Example:
+
+Std Cell Area = 32000
+Macro Area    = 8000
+
+Total Cell Area:
+
+40000 um^2
+
+--------------------------------------------------
+
+2. Choose Target Utilization
+
+Typical:
+
+Easy block      : 65-70%
+Medium block    : 70-80%
+Dense block     : 80-85%
+
+Recommended:
+70-80%
+
+--------------------------------------------------
+
+3. Compute Required Core Area
+
+Formula:
+
+Core Area = Cell Area / Utilization
+
+Example:
+
+40000 / 0.75
+= 53333 um^2
+
+--------------------------------------------------
+
+4. Choose Shape
+
+Possible shapes:
+
+- Rectangle
+- Square
+- L-shape
+- T-shape
+- Y-shape
+- Custom polygon
+
+--------------------------------------------------
+
+5. Rectangle Example
+
+Aspect Ratio = 1
+
+Width = Height = sqrt(Area)
+
+sqrt(53333)
+= 231
+
+Boundary:
+
+{{0 0}
+ {231 0}
+ {231 231}
+ {0 231}}
+
+--------------------------------------------------
+
+6. Custom Shape Example
+
+L-shape:
+
+{{0 0}
+ {300 0}
+ {300 100}
+ {150 100}
+ {150 300}
+ {0 300}}
+
+--------------------------------------------------
+
+7. Polygon Area
+
+Custom shape area must equal required core area.
+
+Use Shoelace Formula:
+
+Area =
+1/2 * abs(SUM(xi*yi+1 - yi*xi+1))
+
+--------------------------------------------------
+
+8. Industry Flow
+
+1. Start rectangle
+2. Place macros
+3. Check congestion
+4. Add channels/notches
+5. Resize
+6. Iterate
+
+--------------------------------------------------
+
+9. Netlist Effects
+
+Large connectivity:
+→ keep modules close
+
+Large macros:
+→ create routing channels
+
+Heavy buses:
+→ wider regions
+
+High pin density:
+→ lower local utilization
+
+--------------------------------------------------
+
+10. Useful ICC2 Commands
+
+report_area
+
+report_utilization
+
+Rectangle floorplan:
+
+initialize_floorplan \
+-core_utilization 0.75 \
+-aspect_ratio 1
+
+Custom boundary:
+
+initialize_floorplan \
+-boundary {{0 0} {300 0} {300 100} {150 100} {150 300} {0 300}}
+
+--------------------------------------------------
+
+11. Key Formulas
+
+Required Area:
+
+A_core = A_cells / Utilization
+
+Scaling:
+
+s = sqrt(U_old / U_new)
+
+Rectangle Side:
+
+Side = sqrt(Area)
+
+--------------------------------------------------
+
+12. Example
+
+Cell area = 50000
+
+Target util = 80%
+
+Required area:
+
+50000 / 0.8
+= 62500
+
+Square side:
+
+sqrt(62500)
+= 250
+
+Boundary:
+
+{{0 0}
+ {250 0}
+ {250 250}
+ {0 250}}
+
+--------------------------------------------------
+
+Final Advice:
+
+Start with simple rectangle.
+Move to custom shapes only if congestion requires it.
